@@ -401,6 +401,52 @@
         opacity: 1;
       }
 
+      /* Modal/Lightbox for expanded images */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 2000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.9);
+        cursor: pointer;
+      }
+
+      .modal-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 90%;
+        max-height: 90%;
+        border-radius: 5px;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+      }
+
+      .modal-content img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        border-radius: 5px;
+      }
+
+      .close {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        color: white;
+        font-size: 40px;
+        font-weight: bold;
+        cursor: pointer;
+        z-index: 2001;
+      }
+
+      .close:hover {
+        opacity: 0.7;
+      }
+
       /* Testimonials */
       .testimonials {
         background: linear-gradient(
@@ -910,6 +956,14 @@
       </div>
     </footer>
 
+    <!-- Modal for expanded images -->
+    <div id="imageModal" class="modal">
+      <span class="close">&times;</span>
+      <div class="modal-content">
+        <img id="modalImage" src="" alt="">
+      </div>
+    </div>
+
     <script>
       // Header scroll effect
       window.addEventListener("scroll", function () {
@@ -957,6 +1011,43 @@
         .forEach((el) => {
           observer.observe(el);
         });
+
+      // Image modal functionality
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      const closeBtn = document.getElementsByClassName("close")[0];
+
+      // Add click event to all building gallery images
+      document.querySelectorAll('.gallery-grid .gallery-item img').forEach(img => {
+        // Only add modal to building photos, not neighborhood gallery
+        if (img.src.includes('building-')) {
+          img.style.cursor = 'pointer';
+          img.addEventListener('click', function() {
+            modal.style.display = "block";
+            modalImg.src = this.src;
+            modalImg.alt = this.alt;
+          });
+        }
+      });
+
+      // Close modal when clicking the X
+      closeBtn.onclick = function() {
+        modal.style.display = "none";
+      }
+
+      // Close modal when clicking outside the image
+      modal.onclick = function(event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      }
+
+      // Close modal with Escape key
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && modal.style.display === "block") {
+          modal.style.display = "none";
+        }
+      });
     </script>
   </body>
 </html>

@@ -154,6 +154,75 @@
         color: var(--gold);
       }
 
+      /* Mobile Menu */
+      .hamburger {
+        display: none;
+        flex-direction: column;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      .hamburger span {
+        width: 25px;
+        height: 3px;
+        background: var(--deep-burgundy);
+        margin: 3px 0;
+        transition: 0.3s;
+      }
+
+      .hamburger.active span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+      }
+
+      .hamburger.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .hamburger.active span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+      }
+
+      .mobile-nav {
+        display: none;
+        position: fixed;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        background: rgba(245, 240, 230, 0.98);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+      }
+
+      .mobile-nav.active {
+        display: block;
+      }
+
+      .mobile-nav ul {
+        list-style: none;
+        padding: 20px;
+        margin: 0;
+      }
+
+      .mobile-nav li {
+        margin: 15px 0;
+      }
+
+      .mobile-nav a {
+        text-decoration: none;
+        color: var(--deep-burgundy);
+        font-weight: 500;
+        font-size: 1rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: block;
+        padding: 10px 0;
+        transition: color 0.3s ease;
+      }
+
+      .mobile-nav a:hover {
+        color: var(--gold);
+      }
+
       /* Hero Section */
       .hero {
         height: 100vh;
@@ -648,6 +717,60 @@
         .nav-links {
           display: none;
         }
+
+        .hamburger {
+          display: flex;
+        }
+
+        .features {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .feature-card {
+          padding: 20px 15px;
+        }
+
+        .modal-content {
+          max-width: 95%;
+          max-height: 85%;
+        }
+
+        .close {
+          top: 10px;
+          right: 15px;
+          font-size: 30px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .container {
+          width: 95%;
+          padding: 0 10px;
+        }
+
+        .feature-card h3 {
+          font-size: 1.2rem;
+        }
+
+        .feature-card h4 {
+          font-size: 0.9rem;
+        }
+
+        .modal-content {
+          max-width: 98%;
+          max-height: 80%;
+        }
+
+        .close {
+          top: 5px;
+          right: 10px;
+          font-size: 25px;
+        }
       }
     </style>
   </head>
@@ -659,10 +782,26 @@
         <ul class="nav-links">
           <li><a href="#location">Location</a></li>
           <li><a href="#character">Building</a></li>
+          <li><a href="#gallery">Gallery</a></li>
           <li><a href="#availability" class="btn">Check Availability</a></li>
         </ul>
+        <div class="hamburger" id="hamburger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
       </div>
     </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" id="mobileNav">
+      <ul>
+        <li><a href="#location">Location</a></li>
+        <li><a href="#character">Building</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#availability" class="btn">Check Availability</a></li>
+      </ul>
+    </div>
 
     <!-- Hero Section -->
     <section class="hero">
@@ -812,120 +951,141 @@
           </div>
         </div>
 
-        <!-- Building Photos -->
-        <div class="section-title" style="margin-top: 80px">
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-title">
           <h2>Building Photos</h2>
           <p>See the Victorian charm up close</p>
         </div>
         <div class="gallery-grid">
           <div class="gallery-item">
             <img
-              src="images/1U0A0008.webp"
+              src="images/1U0A0008_thumb.webp"
+              data-full="images/1U0A0008.webp"
               alt="Building detail 01"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A0013.webp"
+              src="images/1U0A0013_thumb.webp"
+              data-full="images/1U0A0013.webp"
               alt="Building detail 02"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A0018.webp"
+              src="images/1U0A0018_thumb.webp"
+              data-full="images/1U0A0018.webp"
               alt="Building detail 03"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A0023.webp"
+              src="images/1U0A0023_thumb.webp"
+              data-full="images/1U0A0023.webp"
               alt="Building detail 04"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A0038.webp"
+              src="images/1U0A0038_thumb.webp"
+              data-full="images/1U0A0038.webp"
               alt="Building detail 05"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9842.webp"
+              src="images/1U0A9842_thumb.webp"
+              data-full="images/1U0A9842.webp"
               alt="Building detail 06"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9862.webp"
+              src="images/1U0A9862_thumb.webp"
+              data-full="images/1U0A9862.webp"
               alt="Building detail 07"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9867.webp"
+              src="images/1U0A9867_thumb.webp"
+              data-full="images/1U0A9867.webp"
               alt="Building detail 08"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9877.webp"
+              src="images/1U0A9877_thumb.webp"
+              data-full="images/1U0A9877.webp"
               alt="Building detail 09"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9882.webp"
+              src="images/1U0A9882_thumb.webp"
+              data-full="images/1U0A9882.webp"
               alt="Building detail 10"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9897.webp"
+              src="images/1U0A9897_thumb.webp"
+              data-full="images/1U0A9897.webp"
               alt="Building detail 11"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9932.webp"
+              src="images/1U0A9932_thumb.webp"
+              data-full="images/1U0A9932.webp"
               alt="Building detail 12"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9947.webp"
+              src="images/1U0A9947_thumb.webp"
+              data-full="images/1U0A9947.webp"
               alt="Building detail 13"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9957.webp"
+              src="images/1U0A9957_thumb.webp"
+              data-full="images/1U0A9957.webp"
               alt="Building detail 14"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9967.webp"
+              src="images/1U0A9967_thumb.webp"
+              data-full="images/1U0A9967.webp"
               alt="Building detail 15"
               loading="lazy"
             />
           </div>
           <div class="gallery-item">
             <img
-              src="images/1U0A9982.webp"
+              src="images/1U0A9982_thumb.webp"
+              data-full="images/1U0A9982.webp"
               alt="Building detail 16"
               loading="lazy"
             />
@@ -933,7 +1093,6 @@
         </div>
       </div>
     </section>
-
 
     <!-- CTA Section -->
     <section class="availabilty" id="availability">
@@ -1043,15 +1202,13 @@
 
       // Add click event to all building gallery images
       document.querySelectorAll('.gallery-grid .gallery-item img').forEach(img => {
-        // Only add modal to building photos, not neighborhood gallery
-        if (img.src.includes('building-')) {
-          img.style.cursor = 'pointer';
-          img.addEventListener('click', function() {
-            modal.style.display = "block";
-            modalImg.src = this.src;
-            modalImg.alt = this.alt;
-          });
-        }
+        img.style.cursor = 'pointer';
+        img.addEventListener('click', function() {
+          modal.style.display = "block";
+          // Use the full-size image from data-full attribute
+          modalImg.src = this.getAttribute('data-full');
+          modalImg.alt = this.alt;
+        });
       });
 
       // Close modal when clicking the X
@@ -1071,6 +1228,23 @@
         if (event.key === 'Escape' && modal.style.display === "block") {
           modal.style.display = "none";
         }
+      });
+
+      // Mobile menu functionality
+      const hamburger = document.getElementById('hamburger');
+      const mobileNav = document.getElementById('mobileNav');
+
+      hamburger.addEventListener('click', function() {
+        hamburger.classList.toggle('active');
+        mobileNav.classList.toggle('active');
+      });
+
+      // Close mobile menu when clicking on a link
+      document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', function() {
+          hamburger.classList.remove('active');
+          mobileNav.classList.remove('active');
+        });
       });
     </script>
   </body>
